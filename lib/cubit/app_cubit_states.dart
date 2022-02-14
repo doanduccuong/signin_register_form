@@ -21,3 +21,8 @@ class HomeState extends CubitStates{
   // TODO: implement props
   List<Object?> get props => throw [];
 }
+class SearchState extends CubitStates{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw [];
+}

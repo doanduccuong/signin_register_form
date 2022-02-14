@@ -23,6 +23,14 @@ class _LogInScreenState extends State<LogInScreen> {
   late FocusNode _emailFocusNode;
   late FocusNode _passwordFocusNode;
   final _formKey = GlobalKey<FormState>();
+  void _onSubmitForm() {
+    final isValid=_formKey.currentState?.validate();
+    FocusScope.of(context).unfocus();
+    if(isValid==true){
+      _formKey.currentState?.save();
+      BlocProvider.of<AppCubit>(context).goHomeScreen();
+    }
+  }
   @override
   void initState() {
     // TODO: implement initState
@@ -86,6 +94,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 50.w),
                           child: Form(
+                            key: _formKey,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -192,7 +201,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             ),
           );
@@ -203,9 +212,5 @@ class _LogInScreenState extends State<LogInScreen> {
     );
   }
 
-  void _onSubmitForm() {
-    final inValid=_formKey.currentState?.validate();
-    FocusScope.of(context).unfocus();
 
-  }
 }

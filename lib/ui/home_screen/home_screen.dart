@@ -1,5 +1,6 @@
-import 'dart:ffi';
 
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:signin_register_form/component/text/text_bold.dart';
 import 'package:signin_register_form/component/text/text_normal.dart';
@@ -7,7 +8,6 @@ import 'package:signin_register_form/configs/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:signin_register_form/configs/constants.dart';
 import 'package:signin_register_form/configs/images.dart';
-import 'package:signin_register_form/ui/home_screen/widget/test.dart';
 import 'package:signin_register_form/ui/home_screen/widget/wearable_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,6 +18,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
+  int _currentIndex=0;
   late TabController _tabController;
   @override
   void initState() {
@@ -37,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.homeBackGroundColor,
       body: Column(
         children: [
@@ -65,26 +67,30 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 width: 267.w,
                 child: TextFormField(
                   decoration: InputDecoration(
-                      border: InputBorder.none,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        size: 30.sp,
-                        color: Colors.black,
-                      ),
-                      hintText: 'Search',
-                      hintStyle: TextStyle(
-                        color: AppColors.bPrimaryColor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 17.sp,
-                        height: 1.17.h,
-                      )),
+                    border: InputBorder.none,
+                    prefixIcon: Icon(
+                      Icons.search,
+                      size: 30.sp,
+                      color: Colors.black,
+                    ),
+                    hintText: 'Search',
+                    hintStyle: TextStyle(
+                      color: AppColors.bPrimaryColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 17.sp,
+                      height: 1.17.h,
+                    ),
+                  ),
                 ),
               )
             ],
           ),
           Container(
             margin: EdgeInsets.only(
-                right: 121.w, left: 50.w, top: 55.h, bottom: 56.h),
+              right: 121.w,
+              left: 50.w,
+              top: 55.h,
+            ),
             height: 80.h,
             width: 243.w,
             child: TextBold(
@@ -96,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
           //tab bar
           Padding(
-            padding: EdgeInsets.only(left: 54.w,right: 0.w),
+            padding: EdgeInsets.only(left: 54.w, right: 0.w),
             child: TabBar(
               isScrollable: true,
               controller: _tabController,
@@ -109,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       icon: const Icon(null),
                       child: TextNormal(
                         colors: Colors.black,
-                        title: 'Wearable',
+                        title: Constants.tabbarTitle[index],
                         size: 17.sp,
                         height: 1.17.h,
                         fontWeight: FontWeight.w600,
@@ -122,19 +128,69 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
           SizedBox(height: 67.48.h),
           // // tabbar view
-          Expanded(
+          Container(
+            margin: EdgeInsets.only(left: 50.w),
+            height: 317.52.h,
+            width: double.infinity,
             child: TabBarView(
               controller: _tabController,
               children: [
-                Test(),
+                wearableTab(),
                 wearableTab(),
                 wearableTab(),
                 wearableTab(),
               ],
             ),
+          ),
+          SizedBox(height: 29.h,),
+          Row(
+            children: [
+              const Spacer(),
+              TextBold(title: 'see more', colors: AppColors.backGroundColor, size: 15.sp, height: 1.17.h),
+              SizedBox(width: 8.w,),
+              const Icon(Icons.arrow_forward,color: AppColors.backGroundColor,),
+              SizedBox(width: 28.w,),
+            ],
           )
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: AppColors.homeBackGroundColor,
+        unselectedIconTheme: IconThemeData(
+          color: AppColors.unselectedColor,
+        ),
+        selectedIconTheme: IconThemeData(
+          color: AppColors.backGroundColor,
+        ),
+        elevation: 0,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite_border),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: '',
+          ),
+        ],
+        currentIndex: _currentIndex,
+        onTap: (index)=> _onTap(index),
+
+      ),
     );
+  }
+  void _onTap(int index){
+    setState(() {
+      _currentIndex=index;
+    });
   }
 }
