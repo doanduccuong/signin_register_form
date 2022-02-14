@@ -3,7 +3,7 @@ import 'package:signin_register_form/cubit/app_cubit_states.dart';
 
 class AppCubit extends Cubit<CubitStates>{
   AppCubit( ) : super(InitialState()){
-    emit(SplashState());
+    emit(HomeState());
   }
   goLogInScreen(){
     emit(LogInState());
