@@ -1,15 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:signin_register_form/component/text/text_normal.dart';
 import 'package:signin_register_form/configs/colors.dart';
 import 'package:signin_register_form/configs/constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../component/text/text_bold.dart';
-
 Widget wearableTab() {
   return ListView.builder(
-
     itemBuilder: (context, index) {
       return Container(
         margin: EdgeInsets.only(right: 34.w),

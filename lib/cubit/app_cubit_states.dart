@@ -26,3 +26,18 @@ class SearchState extends CubitStates{
   // TODO: implement props
   List<Object?> get props => throw [];
 }
+class ItemNotFoundState extends CubitStates{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw [];
+}
+class ItemState extends CubitStates{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw [];
+}
+class TestState extends CubitStates{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw [];
+}

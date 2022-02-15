@@ -4,7 +4,10 @@ import 'package:signin_register_form/cubit/app_cubit.dart';
 import 'package:signin_register_form/cubit/app_cubit_states.dart';
 import 'package:signin_register_form/ui/home_screen/home_screen.dart';
 import 'package:signin_register_form/ui/login_screen/login_screen.dart';
+import 'package:signin_register_form/ui/search_screen/item_not_found_screen.dart';
 
+import 'package:signin_register_form/ui/search_screen/widget/test.dart';
+import '../ui/item_screen/item_screen.dart';
 import '../ui/search_screen/search_screen.dart';
 import '../ui/splash_screen/splash_screen.dart';
 class AppCubitLogics extends StatelessWidget {
@@ -30,6 +33,15 @@ class AppCubitLogics extends StatelessWidget {
           }
           if(state is SearchState){
             return const SearchScreen();
+          }
+          if(state is ItemNotFoundState){
+            return const ItemNotFoundScreen();
+          }
+          if(state is ItemState){
+            return const ItemScreen();
+          }
+          if(state is TestState){
+            return const Test();
           }
           else {
             return Container(

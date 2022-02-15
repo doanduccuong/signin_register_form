@@ -128,7 +128,6 @@ class _LogInScreenState extends State<LogInScreen> {
                                 ),
                                 //password form field
                                 TextFormField(
-
                                   obscureText: _obscureText,
                                   key: const ValueKey('password'),
                                   keyboardType: TextInputType.visiblePassword,
