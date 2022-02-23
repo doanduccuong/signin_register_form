@@ -1,10 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:signin_register_form/cubit/app_cubit_states.dart';
+import 'package:signin_register_form/ui/home_screen/home_screen.dart';
 
 
 class AppCubit extends Cubit<CubitStates>{
   AppCubit( ) : super(InitialState()){
-    emit(SplashState());
+    emit(HomeState());
   }
   goLogInScreen(){
     emit(LogInState());
@@ -14,6 +15,9 @@ class AppCubit extends Cubit<CubitStates>{
   }
   goSearchScreen(){
     emit(SearchState());
+  }
+  goSingleItemScreen(){
+    emit(ItemState());
   }
 
 

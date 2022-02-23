@@ -37,19 +37,5 @@ class _SignInAppState extends State<SignInApp> {
           );
 
     },future: _intialization,);
-    // return ScreenUtilInit(
-    //   designSize: const Size(390, 844),
-    //   builder: () => MaterialApp(
-    //     title: 'E-Commerce App',
-    //     debugShowCheckedModeBanner: false,
-    //     theme: ThemeData(
-    //       primarySwatch: Colors.blue,
-    //     ),
-    //     home: BlocProvider<AppCubit>(
-    //       create: (context) => AppCubit(),
-    //       child: const AppCubitLogics(),
-    //     ),
-    //   ),
-    // );
   }
 }

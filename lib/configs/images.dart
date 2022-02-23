@@ -4,4 +4,5 @@ class AppImages{
   static const String imgIpad="assets/images/img_ipad.png";
   static const String imgSaly17="assets/images/img_saly_17.png";
   static const String imgIpadLarge="assets/images/img_ipad_large.png";
+  static const String imgCircle="assets/images/img_circle.png";
 }

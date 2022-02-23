@@ -1,166 +1,30 @@
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:signin_register_form/component/text/text_bold.dart';
-import 'package:signin_register_form/component/text/text_normal.dart';
-import 'package:signin_register_form/configs/colors.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:signin_register_form/configs/constants.dart';
-import 'package:signin_register_form/configs/images.dart';
-import 'package:signin_register_form/ui/home_screen/widget/wearable_tab.dart';
+import 'package:provider/src/provider.dart';
 
-class HomeScreen extends StatefulWidget {
+import 'package:signin_register_form/configs/colors.dart';
+
+import 'package:signin_register_form/providers/home_provider/home_provider.dart';
+import 'package:signin_register_form/ui/home_screen/list_screen/basket_tab.dart';
+
+import 'list_screen/home_tab.dart';
+
+class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
-  int _currentIndex=0;
-  late TabController _tabController;
-  @override
-  void initState() {
-    // TODO: implement initState
-    _tabController =
-        TabController(length: Constants.tabbarTitle.length, vsync: this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: AppColors.homeBackGroundColor,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 47.h,
-          ),
-          //Search Field
-          Row(
-            children: [
-              SizedBox(
-                width: 55.w,
-              ),
-              InkWell(
-                onTap: () {},
-                child: Image.asset(AppImages.imgVector),
-              ),
-              Container(
-                padding: EdgeInsets.only(left: 13.w),
-                alignment: Alignment.center,
-                margin: EdgeInsets.only(left: 26.w),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                  borderRadius: BorderRadius.circular(30.r),
-                ),
-                height: 60.h,
-                width: 267.w,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    prefixIcon: Icon(
-                      Icons.search,
-                      size: 30.sp,
-                      color: Colors.black,
-                    ),
-                    hintText: 'Search',
-                    hintStyle: TextStyle(
-                      color: AppColors.bPrimaryColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 17.sp,
-                      height: 1.17.h,
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(
-              right: 121.w,
-              left: 50.w,
-              top: 55.h,
-            ),
-            height: 80.h,
-            width: 243.w,
-            child: TextBold(
-              title: 'Order online collect in store',
-              colors: AppColors.textColor1,
-              size: 34.sp,
-              height: 1.17.h,
-            ),
-          ),
-          //tab bar
-          Padding(
-            padding: EdgeInsets.only(left: 54.w, right: 0.w),
-            child: TabBar(
-              isScrollable: true,
-              controller: _tabController,
-              tabs: List.generate(
-                Constants.tabbarTitle.length,
-                (index) {
-                  return SizedBox(
-                    height: 87.h,
-                    child: Tab(
-                      icon: const Icon(null),
-                      child: TextNormal(
-                        colors: Colors.black,
-                        title: Constants.tabbarTitle[index],
-                        size: 17.sp,
-                        height: 1.17.h,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-          SizedBox(height: 67.48.h),
-          // // tabbar view
-          Container(
-            margin: EdgeInsets.only(left: 50.w),
-            height: 317.52.h,
-            width: double.infinity,
-            child: TabBarView(
-              controller: _tabController,
-              children: [
-                wearableTab(),
-                wearableTab(),
-                wearableTab(),
-                wearableTab(),
-              ],
-            ),
-          ),
-          SizedBox(height: 29.h,),
-          Row(
-            children: [
-              const Spacer(),
-              TextBold(title: 'see more', colors: AppColors.backGroundColor, size: 15.sp, height: 1.17.h),
-              SizedBox(width: 8.w,),
-              const Icon(Icons.arrow_forward,color: AppColors.backGroundColor,),
-              SizedBox(width: 28.w,),
-            ],
-          )
-        ],
-      ),
+      body: screenWidget[context.watch<HomeProvider>().index],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: AppColors.homeBackGroundColor,
-        unselectedIconTheme: IconThemeData(
+        unselectedIconTheme: const IconThemeData(
           color: AppColors.unselectedColor,
         ),
-        selectedIconTheme: IconThemeData(
+        selectedIconTheme: const IconThemeData(
           color: AppColors.backGroundColor,
         ),
         elevation: 0,
@@ -182,15 +46,24 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             label: '',
           ),
         ],
-        currentIndex: _currentIndex,
-        onTap: (index)=> _onTap(index),
-
+        currentIndex: context.watch<HomeProvider>().index,
+        onTap: (index) => _onTap(index,context),
       ),
     );
   }
-  void _onTap(int index){
-    setState(() {
-      _currentIndex=index;
-    });
+
+  void _onTap(int index,BuildContext context) {
+    context.read<HomeProvider>().setCurrentTab(index);
   }
 }
+
+List<Widget> screenWidget = [
+  const HomeTab(),
+  Container(
+    color: Colors.red,
+  ),
+  Container(
+    color: Colors.red,
+  ),
+  const BasketTab(),
+];

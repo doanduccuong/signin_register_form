@@ -29,7 +29,7 @@ class TextNormal extends StatelessWidget {
       textAlign: isCenter != null ? TextAlign.center : null,
       style: TextStyle(
         color: colors ?? AppColors.textColor,
-        fontWeight: fontWeight ?? FontWeight.w400,
+        fontWeight: fontWeight ?? FontWeight.w600,
         fontStyle: FontStyle.normal,
         fontFamily: 'Poppins',
         fontSize: size ?? 17.sp,

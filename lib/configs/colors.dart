@@ -16,6 +16,10 @@ class AppColors{
   static const Color skyBlueColor=Color(0xFF7485C1);
   static const Color roseGoldColor=Color(0xFFC9A19C);
   static const Color greenColor=Color(0xFFA1C89B);
+  static const Color unFocusItemColor=Color(0xFFC4C4C4);
+  static const Color cPrimaryColor=Color(0xFF7DCCEC);
+  static const Color dPrimaryColor=Color(0xFFFA4A0C);
+  static const Color ePrimaryColor= Color(0xFFD3F2FF);
 
 
 

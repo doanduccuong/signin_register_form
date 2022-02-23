@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:signin_register_form/cubit/app_cubit.dart';
 import 'package:signin_register_form/cubit/app_cubit_states.dart';
 import 'package:signin_register_form/ui/home_screen/home_screen.dart';
+import 'package:signin_register_form/ui/home_screen/list_screen/basket_tab.dart';
 import 'package:signin_register_form/ui/login_screen/login_screen.dart';
 import 'package:signin_register_form/ui/search_screen/item_not_found_screen.dart';
 
@@ -42,6 +43,9 @@ class AppCubitLogics extends StatelessWidget {
           }
           if(state is TestState){
             return const Test();
+          }
+          if(state is BasketState){
+            return const BasketTab();
           }
           else {
             return Container(

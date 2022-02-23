@@ -41,3 +41,8 @@ class TestState extends CubitStates{
   // TODO: implement props
   List<Object?> get props => throw [];
 }
+class BasketState extends CubitStates{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw [];
+}
