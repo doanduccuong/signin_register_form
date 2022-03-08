@@ -32,6 +32,8 @@ class ItemNotFoundState extends CubitStates{
   List<Object?> get props => throw [];
 }
 class ItemState extends CubitStates{
+  String image;
+  ItemState({required this.image});
   @override
   // TODO: implement props
   List<Object?> get props => throw [];
@@ -42,6 +44,16 @@ class TestState extends CubitStates{
   List<Object?> get props => throw [];
 }
 class BasketState extends CubitStates{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw [];
+}
+class LoadingState extends CubitStates{
+  @override
+  // TODO: implement props
+  List<Object?> get props => throw [];
+}
+class CheckOutState extends CubitStates{
   @override
   // TODO: implement props
   List<Object?> get props => throw [];

@@ -5,7 +5,7 @@ import 'package:provider/src/provider.dart';
 import 'package:signin_register_form/component/text/text_bold.dart';
 import 'package:signin_register_form/component/text/text_normal.dart';
 import 'package:signin_register_form/configs/colors.dart';
-import 'package:signin_register_form/configs/images.dart';
+
 
 import '../basket_providers.dart';
 
@@ -29,8 +29,8 @@ class Product extends StatelessWidget {
             top: 14.h,
             left: 15.w,
             bottom: 11.h,
-            child: const Image(
-              image: AssetImage(AppImages.imgIpad),
+            child:  Image(
+              image: NetworkImage(image),
             ),
           ),
           Positioned(
@@ -95,10 +95,12 @@ class Product extends StatelessWidget {
     // context.read<BasketProvider>().setIndex(index1);
     Provider.of<BasketProvider>(context,listen: false).setIndex(index);
     Provider.of<BasketProvider>(context,listen: false).decrementAmount(index);
+    Provider.of<BasketProvider>(context,listen: false).calculateTotal();
 
   }
   void _onTapAdd(BuildContext context){
     Provider.of<BasketProvider>(context,listen: false).setIndex(index);
     Provider.of<BasketProvider>(context,listen: false).incrementAmount(index);
+    Provider.of<BasketProvider>(context,listen: false).calculateTotal();
   }
 }

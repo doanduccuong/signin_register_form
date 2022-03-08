@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/src/provider.dart';
 import 'package:signin_register_form/component/text/text_normal.dart';
 import 'package:signin_register_form/configs/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:signin_register_form/cubit/app_cubit.dart';
 import 'package:signin_register_form/providers/basket_providers/basket_providers.dart';
 class BasketTab extends StatelessWidget {
   const BasketTab({Key? key}) : super(key: key);
@@ -33,8 +35,11 @@ class BasketTab extends StatelessWidget {
                   size: 18.sp,
                 ),
                  InkWell(
-                   onTap: () => context.read<BasketProvider>().clearBasket(),
-                   child: Icon(
+                   onTap: () {
+                     context.read<BasketProvider>().clearBasket();
+                     Provider.of<BasketProvider>(context,listen: false).calculateTotal();
+                   },
+                   child: const Icon(
                     Icons.delete,
                     color: AppColors.dPrimaryColor,
                 ),
@@ -72,6 +77,20 @@ class BasketTab extends StatelessWidget {
                 TextNormal(title: 'Total',size: 17.sp,fontWeight: FontWeight.w400,colors: AppColors.textColor1,),
                 TextNormal(title: "${context.watch<BasketProvider>().totalAmount}",size: 22.sp,fontWeight: FontWeight.w700,colors: AppColors.backGroundColor,)
               ],
+            ),
+            SizedBox(height: 51.h,),
+            InkWell(
+              onTap: BlocProvider.of<AppCubit>(context).goCheckOutScreen(),
+              child: Container(
+                alignment: Alignment.center,
+                height: 70.h,
+                width: 314.w,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.r),
+                  color: AppColors.backGroundColor,
+                ),
+                child: TextNormal(title: 'Check out',size: 20.sp,),
+              ),
             )
           ],
         ),

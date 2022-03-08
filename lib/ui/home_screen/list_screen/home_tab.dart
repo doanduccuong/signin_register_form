@@ -127,7 +127,7 @@ class _HomeTabState extends State<HomeTab> with TickerProviderStateMixin{
             width: double.infinity,
             child: TabBarView(
               controller: _tabController,
-              children: [
+              children: const [
                 wearableTab(),
                 wearableTab(),
                 wearableTab(),

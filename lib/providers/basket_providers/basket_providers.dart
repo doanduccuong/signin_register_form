@@ -31,6 +31,7 @@ class BasketProvider with ChangeNotifier {
 
   void clearBasket() {
     _listProduct.clear();
+    _totalAmount=0;
     notifyListeners();
   }
 
@@ -49,7 +50,7 @@ class BasketProvider with ChangeNotifier {
 
   void calculateTotal() {
     for (int i = 0; i < _listProduct.length; i++) {
-       _totalAmount += _listProduct[i].price;
+       _totalAmount += _listProduct[i].price*amount[i];
     }
     notifyListeners();
   }
